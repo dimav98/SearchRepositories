@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from 'react-router-dom';
-import reportWebVitals from "../../reportWebVitals";
 import SearchResults from "../SearchResults/SearchResults"
+
 
 function Search() {
   const history = useHistory();
@@ -10,7 +10,7 @@ function Search() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [repos, setRepos] = React.useState([]);
-  const [countResult, setCount] = React.useState([]);
+  const [countResult, setCount] = React.useState(0);
 
 
 
@@ -72,8 +72,8 @@ function Search() {
           <p className="text-sm">Unexpected Error Occurred fetching data. Please try again later!</p>
         </div>
       )}
-      {repos.map((repo) => <SearchResults key={repo.id} {...repo} />)}
-
+      {countResult && <div className="flex justify-center mt-2 text-gray-800 dark:text-white"> Results: {countResult} </div>} 
+      {repos.map((repo) => <SearchResults key={repo.id} {...repo} />) }
     </>
   )
 };
